@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-page: #F7F4EF;
+    --text-primary: #1A1A1A;
+    --text-muted: #6E6B65;
+    --border-hairline: rgba(26, 26, 26, 0.12);
+    --accent-gold: #B8A27A;
+    --surface-card: #FFFFFF;
+  }
+
+  .dark {
+    --bg-page: #0E0E0E;
+    --text-primary: #F7F4EF;
+    --text-muted: #949089;
+    --border-hairline: rgba(247, 244, 239, 0.12);
+    --accent-gold: #B8A27A;
+    --surface-card: #151515;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: #B8A27A;
+    color: #0E0E0E;
+  }
+}
+
+/* Custom Scrollbar - Editorial Minimalist */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(184, 162, 122, 0.35);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(184, 162, 122, 0.7);
+}
+
+/* Subtle Hairline Dividers */
+.hairline-b {
+  border-bottom: 1px solid var(--border-hairline);
+}
+.hairline-t {
+  border-top: 1px solid var(--border-hairline);
+}
+.hairline-l {
+  border-left: 1px solid var(--border-hairline);
+}
+.hairline-r {
+  border-right: 1px solid var(--border-hairline);
+}
+
+/* Editorial Hover Link: hairline underline animates from left to right */
+.editorial-link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+.editorial-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent-gold);
+  transform-origin: bottom right;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.editorial-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Editorial Underlined Input */
+.editorial-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-hairline);
+  padding: 0.85rem 0;
+  font-size: 0.95rem;
+  color: inherit;
+  border-radius: 0;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  width: 100%;
+}
+.editorial-input:focus {
+  outline: none;
+  border-bottom-color: var(--accent-gold);
+}
+.editorial-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* Subtle editorial noise background overlay */
+.editorial-grain {
+  background-image: radial-gradient(rgba(184, 162, 122, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Accessibility: Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
